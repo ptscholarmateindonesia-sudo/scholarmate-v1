@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // User profile document
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      // Prevent client from writing entitlement or payment status fields directly
+      allow create, update: if request.auth != null 
+        && request.auth.uid == userId 
+        && !request.resource.data.keys().hasAny(['activePassTier', 'passStartsAt', 'passExpiryAt', 'firstScanAt', 'entitlementGranted', 'isPaid', 'paymentStatus']);
+      allow delete: if request.auth != null && request.auth.uid == userId;
+
+      // Saved scholarship results subcollection
+      match /saved_results/{resultId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
+      // Usage subcollection
+      match /usage/{usageId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+
+    // Payment and entitlement collections are strictly server-authoritative
+    match /paymentOrders/{orderId} {
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    match /payments/{paymentId} {
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    match /entitlements/{entitlementId} {
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+  }
+}

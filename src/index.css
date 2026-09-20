@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-primary: #1F8ED8;
+    --brand-primary-hover: #197ec2;
+    --brand-primary-active: #156fae;
+    --brand-primary-light: #EBF5FC;
+    --brand-primary-border: #BAE0F8;
+    --text-primary: #111111;
+    --text-secondary: #475569;
+    --surface-light: #F8FAFC;
+    --border-subtle: #E2E8F0;
+  }
+
+  body {
+    color: #111111;
+    background-color: #F8FAFC;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+}

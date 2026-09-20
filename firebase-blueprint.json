@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "UserProfile": {
+      "collectionName": "users",
+      "description": "User profile and account information",
+      "fields": {
+        "uid": { "type": "string", "required": true },
+        "email": { "type": "string", "required": false },
+        "displayName": { "type": "string", "required": false },
+        "photoURL": { "type": "string", "required": false },
+        "activePassTier": { "type": "string", "required": false },
+        "passStartsAt": { "type": "timestamp", "required": false },
+        "passExpiryAt": { "type": "timestamp", "required": false },
+        "firstScanAt": { "type": "timestamp", "required": false },
+        "createdAt": { "type": "timestamp", "required": false },
+        "lastLoginAt": { "type": "timestamp", "required": false }
+      }
+    },
+    "SavedResult": {
+      "collectionName": "users/{userId}/saved_results",
+      "description": "Saved scholarship evaluation results and profile snapshots",
+      "fields": {
+        "id": { "type": "string", "required": true },
+        "userId": { "type": "string", "required": true },
+        "version": { "type": "string", "required": true },
+        "savedAt": { "type": "string", "required": true },
+        "profile": { "type": "map", "required": true },
+        "derivedProfile": { "type": "map", "required": false },
+        "results": { "type": "array", "required": true },
+        "progressiveAnswers": { "type": "map", "required": false },
+        "topRecommendationId": { "type": "string", "required": false },
+        "profileReadiness": { "type": "number", "required": false },
+        "updatedAt": { "type": "timestamp", "required": false }
+      }
+    },
+    "UserUsage": {
+      "collectionName": "users/{userId}/usage",
+      "description": "Tracks user usage quotas for free/paid tiers",
+      "fields": {
+        "id": { "type": "string", "required": true },
+        "userId": { "type": "string", "required": true },
+        "scanCount": { "type": "number", "required": true },
+        "aiActionCount": { "type": "number", "required": true },
+        "lastScanAt": { "type": "timestamp", "required": false },
+        "updatedAt": { "type": "timestamp", "required": true }
+      }
+    }
+  }
+}

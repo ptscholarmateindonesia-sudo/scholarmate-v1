@@ -1,0 +1,6 @@
+{
+  "name": "ScholarMate AI",
+  "description": "Scholarship matching and preparation copilot for Indonesian undergraduate students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
